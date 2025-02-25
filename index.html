@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>HTML</title>
+    
+  </head>
+  <body>
+    <h1>Feedback Form</h1>
+    <form id="userFeedbackForm">
+      <label for="userName"> Name:</label>
+      <input type ="text" id="userName" />
+      <br>
+      <br>
+  
+      <label for="feedback">Feedback:</label><br>
+      <textarea  id="feedback" rows="5" cols ="30"></textarea>
+  
+      <br>
+      <br>
+      <label>Rate our service::</label><br>
+      <label for="excellent"><input type="radio" name ="rate" 
+        value="Excellent" id="excellent"/>Excellent</label><br>
+        <label for="good"><input type="radio" name ="rate" 
+          value="Good" id="good" />Good</label><br>
+          <label for="fair"><input type="radio" name ="rate" 
+            value="Fair" id="fair" /> Other</label>
+     
+          <br>
+          <br>
+  
+          <label>Select Topics of Interest:</label><br>
+          <label for="technology"><input type="checkbox" name="interests" 
+            value="Technology" id="technology"/>Technology</label><br>
+          <label for="travel"><input type="checkbox" name="interests" 
+            value="Travel" id="travel"/>Travel</label><br>
+          <label for="food"><input type="checkbox" name="interests"
+             value="Food" id="food"/>Food</label>
+          <br>
+          <br>
+          <label>Overall Experience:</label>
+          <select id="experienceSelect">
+            <option value="Very Satisfied">Very Satisfied</option>
+            <option value="Satisfied">Satisfied</option>
+            <option value="Neutral">Neutral</option>
+          </select>
+          <br>
+          <br>
+         <input type="submit" value="Submit"/>
+  </form> 
+  <div id="formResult"></div>
+  
+  <script>
+  
+    const userFeedbackForm = document.getElementById("userFeedbackForm")
+    userFeedbackForm.addEventListener("submit",function(event){
+  
+      event.preventDefault()
+  
+  const userName = document.getElementById("userName").value
+  const feedback = document.getElementById("feedback").value
+  const rate = document.querySelector('input[name="rate"]:checked').value
+  const interests = document.querySelectorAll('input[name="interests"]:checked')
+  let selectedInterests = []
+  
+   for (let i=0;i<interests.length; i++){
+    selectedInterests.push(interests[i].value)
+   }
+  
+   const experience = document.getElementById("experienceSelect").value
+  
+  
+     const userInputValues = `<h2>Feedback Submited:</h2>
+    <p><strong>Name:</strong> ${userName}</p>
+    <p><strong>Full Address:</strong> ${feedback}</P>
+    <p><strong>Service Rating:</strong> ${rate}</p>
+    <p><strong>Topic of Interest:</strong> ${selectedInterests.join(' ')}</p>
+    <p><strong>Overall Experience:</strong> ${experience}</P>`
+      const divElement= document.getElementById("formResult")
+      divElement.innerHTML = userInputValues
+  
+    })
+  
+  
+  
+    
+  
+  </script>
+  </body>
+</html>
